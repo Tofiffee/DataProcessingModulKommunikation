@@ -62,11 +62,13 @@ class ChirpData():
 listURL = [
     'https://docs.google.com/spreadsheets/d/13Mmcw54O7G_LruX0nXUkFv-C3Y5NNvO6XzAQnhEzeqc/edit#gid=0',
     'https://docs.google.com/spreadsheets/d/11YsRYABukndOhe8loN3_4oKDjRfV6mJo/edit#gid=1173836825',
+    "https://docs.google.com/spreadsheets/d/178msiAEd50V1jYQf805meYiqwlQJYb3W/edit#gid=1498647522"
     ]
 
 listSheetID = [
     '13Mmcw54O7G_LruX0nXUkFv-C3Y5NNvO6XzAQnhEzeqc',
     '11YsRYABukndOhe8loN3_4oKDjRfV6mJo',
+    '178msiAEd50V1jYQf805meYiqwlQJYb3W'
     ]
 
 ChirpObjectList = []
@@ -88,5 +90,11 @@ for i in ChirpObjectList:
     silb3.append(silbList[2])
     silb4.append(silbList[3])
     temps.append(i.temperature)
+
+print(temps)
+print(silb1)
+print(silb2)
+print(silb3)
+print(silb4)
 
 ScatterPlotSilibleTime(temps, silb1, silb2, silb3, silb4)

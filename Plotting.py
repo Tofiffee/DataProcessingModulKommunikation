@@ -30,14 +30,14 @@ def ScatterPlotSilibleTime(temps, silb1, silb2, silb3, silb4):
     ax0.set_ylim(0.01, 0.025)
 
 
-    plt.scatter(temps, silb1, color='blue', label='Silible 1')
-    plt.scatter(temps, silb2, color='red', label='Silible 2')
-    plt.scatter(temps, silb3, color='green', label='Silible 3')
-    plt.scatter(temps, silb4, color='k', label='Silible 4')
-    plt.plot(temps, regression1, color='blue')
-    plt.plot(temps, regression2, color='red')
-    plt.plot(temps, regression3, color='green')
-    plt.plot(temps, regression4, color='k')
+    plt.scatter(temps, silb1, color='blue', label='syllable 1')
+    plt.scatter(temps, silb2, color='red', label='syllable 2')
+    plt.scatter(temps, silb3, color='green', label='syllable 3')
+    plt.scatter(temps, silb4, color='k', label='syllable 4')
+    plt.plot([max(temps), min(temps)], regression1, color='blue')
+    plt.plot([max(temps), min(temps)], regression2, color='red')
+    plt.plot([max(temps), min(temps)], regression3, color='green')
+    plt.plot([max(temps), min(temps)], regression4, color='k')
 
     plt.legend(loc='best')
     plt.savefig('siliblesPlot.png')
