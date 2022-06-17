@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 
-from Plotting import ScatterPlotSilibleTime
-
-
 class ChirpData():
     def __init__(self, BaseURL, sheetID):
         self.Basedata = self.ReadBaseData(BaseURL)
@@ -37,6 +34,29 @@ class ChirpData():
         self.mean_syllable2 = self.syllable2.mean()
         self.mean_syllable3 = self.syllable3.mean()
         self.mean_syllable4 = self.syllable4.mean()
+
+        self.std_syllable1 = self.syllable1.std()
+        self.std_syllable2 = self.syllable2.std()
+        self.std_syllable3 = self.syllable3.std()
+        self.std_syllable4 = self.syllable4.std()
+
+        self.meanFrequency1 = self.Frequency1.mean()
+        self.meanFrequency2 = self.Frequency2.mean()
+        self.meanFrequency3 = self.Frequency3.mean()
+        self.meanFrequency4 = self.Frequency4.mean()
+
+        self.stdFrequency1 = self.Frequency1.std()
+        self.stdFrequency2 = self.Frequency2.std()
+        self.stdFrequency3 = self.Frequency3.std()
+        self.stdFrequency4 = self.Frequency4.std()
+
+        self.meanInterTime1 = self.interTime1.mean()
+        self.meanInterTime2 = self.interTime2.mean()
+        self.meanInterTime3 = self.interTime3.mean()
+
+        self.stdInterTime1 = self.interTime1.std()
+        self.stdInterTime2 = self.interTime2.std()
+        self.stdInterTime3 = self.interTime3.std()
 
     def ReadBaseData(self, url): 
         """
@@ -76,47 +96,7 @@ class ChirpData():
         return timevalues
 
     def CalcFrequency(self, pulsNumber):
-        frequ = self.Basedata[[f'Chirp1_puls{pulsNumber}', f'Chirp2_puls{pulsNumber}', f'Chirp3_puls{pulsNumber}']].iloc[0]
-        frequ = frequ.apply(lambda x: int(x.split(',')[0]))
+        frequ = self.Basedata[[f'Chirp1_puls{pulsNumber}', f'Chirp2_puls{pulsNumber}', f'Chirp3_puls{pulsNumber}', f'Chirp4_puls{pulsNumber}', f'Chirp5_puls{pulsNumber}']].iloc[0]
         frequ = frequ.to_numpy()
 
         return frequ
-
-
-listURL = [
-    'https://docs.google.com/spreadsheets/d/13Mmcw54O7G_LruX0nXUkFv-C3Y5NNvO6XzAQnhEzeqc/edit#gid=0',
-    'https://docs.google.com/spreadsheets/d/10qs8ioTX_lJuN4jY4pEuxdkQ2LTC84cO/edit#gid=32900920',
-    'https://docs.google.com/spreadsheets/d/11YsRYABukndOhe8loN3_4oKDjRfV6mJo/edit#gid=1173836825',
-    ]
-
-listSheetID = [
-    '13Mmcw54O7G_LruX0nXUkFv-C3Y5NNvO6XzAQnhEzeqc',
-    '10qs8ioTX_lJuN4jY4pEuxdkQ2LTC84cO',
-    '11YsRYABukndOhe8loN3_4oKDjRfV6mJo',
-    ]
-
-syllable1 = []
-syllable2 = []
-syllabel3 = []
-syllabel4 = []
-temps = []
-
-for i, j in zip(listURL, listSheetID):
-    ChirpObject = ChirpData(i, j)
-    syllable1.append(ChirpObject.mean_syllable1)
-    print(ChirpObject.mean_syllable1)
-    syllable2.append(ChirpObject.mean_syllable2)
-    syllabel3.append(ChirpObject.mean_syllable3)
-    syllabel4.append(ChirpObject.mean_syllable4)
-    temps.append(ChirpObject.temperature)
-
-
-print(syllable1)
-print(syllabel3)
-print(syllable2)
-
-ScatterPlotSilibleTime(
-    temps=temps, 
-    data1=syllable1, data2=syllable2, data3=syllabel3, data4=syllabel4, 
-    plotname='SyllableTime'
-    )
