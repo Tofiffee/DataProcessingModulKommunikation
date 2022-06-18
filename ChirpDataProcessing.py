@@ -1,5 +1,5 @@
 from ChirpDataClass import ChirpData
-from Plotting import ScatterPlotFrequency, ScatterPlotSilibleTime
+from Plotting import ScatterPlotFrequency, ScatterPlotInterTime, ScatterPlotSilibleTime, ScatterChirpTimes
 from statisticsPipline import StatisticalTesting
 
 
@@ -51,16 +51,17 @@ interTimeErr2 = []
 interTime3 = []
 interTimeErr3 = []
 
-
+echemeTime = []
+echemeTimeErr = []
+Chirpfrequ = []
 
 
 temps = []
 
 for i, j in zip(listURL, listSheetID):
     ChirpObject = ChirpData(i, j)
-    
+
     syllable1.append(ChirpObject.mean_syllable1)
-    print(ChirpObject.mean_syllable1)
     syllable2.append(ChirpObject.mean_syllable2)
     syllabel3.append(ChirpObject.mean_syllable3)
     syllabel4.append(ChirpObject.mean_syllable4)
@@ -71,7 +72,6 @@ for i, j in zip(listURL, listSheetID):
     syllbErr4.append(ChirpObject.std_syllable4)
 
     Frequ1.append(ChirpObject.meanFrequency1)
-    print(ChirpObject.meanFrequency1)
     Frequ2.append(ChirpObject.meanFrequency2)
     Frequ3.append(ChirpObject.meanFrequency3)
     Frequ4.append(ChirpObject.meanFrequency4)
@@ -89,13 +89,19 @@ for i, j in zip(listURL, listSheetID):
     interTimeErr2.append(ChirpObject.stdInterTime2)
     interTimeErr3.append(ChirpObject.stdInterTime3)
 
+    echemeTime.append(ChirpObject.meanChirptime)
+    echemeTimeErr.append(ChirpObject.stdChirptime)
+    Chirpfrequ.append(ChirpObject.ChirpFrequency)
+
     temps.append(ChirpObject.temperature)
+
+print(Chirpfrequ)
 
 ScatterPlotSilibleTime(
     temps=temps, 
     data1=syllable1, data2=syllable2, data3=syllabel3, data4=syllabel4, 
     plotname='SyllableTime',
-    yerr1=syllable1, yerr2=syllbErr2, yerr3=syllbErr3, yerr4=syllbErr4
+    yerr1=syllbErr1, yerr2=syllbErr2, yerr3=syllbErr3, yerr4=syllbErr4
     )
 
 ScatterPlotFrequency(
@@ -103,4 +109,14 @@ ScatterPlotFrequency(
     data1=Frequ1, data2=Frequ2, data3=Frequ3, data4=Frequ4,
     plotname='FrequencyTemp',
     yerr1=FrequErr1, yerr2=FrequErr2, yerr3=FrequErr3, yerr4=FrequErr4
-)
+    )
+
+ScatterPlotInterTime(
+    temps=temps, data1=interTime1, data2=interTime2, data3=interTime3,
+    yerr1=interTimeErr1, yerr2=interTimeErr2, yerr3=interTimeErr3,
+    plotname='interTime'
+    )
+
+ScatterChirpTimes(
+    temps=temps, data1=echemeTime, data2=Chirpfrequ, plotname='Chirptime_frequency', yerr1=echemeTimeErr
+    )

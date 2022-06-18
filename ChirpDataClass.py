@@ -29,6 +29,8 @@ class ChirpData():
         self.Frequency4 = self.CalcFrequency(4)
         
         self.Chirptimes = self.syllable1 + self.syllable2 + self.syllable3 + self.syllable4 + self.interTime1 + self.interTime2 + self.interTime3
+        self.meanChirptime = self.Chirptimes.mean()
+        self.stdChirptime = self.Chirptimes.std() 
 
         self.mean_syllable1 = self.syllable1.mean()
         self.mean_syllable2 = self.syllable2.mean()
@@ -57,6 +59,8 @@ class ChirpData():
         self.stdInterTime1 = self.interTime1.std()
         self.stdInterTime2 = self.interTime2.std()
         self.stdInterTime3 = self.interTime3.std()
+
+        self.ChirpFrequency = self.Basedata['frequenz'].iloc[0]
 
     def ReadBaseData(self, url): 
         """
