@@ -66,8 +66,6 @@ counter = 0
 
 for i, j in zip(listURL, listSheetID):
     ChirpObject = ChirpData(i, j)
-<<<<<<< HEAD
-=======
     counter += 1
     print(counter)
     print(TestNormalDistribution(ChirpObject.syllable1, 'syllable1'))
@@ -83,7 +81,6 @@ for i, j in zip(listURL, listSheetID):
     print(TestNormalDistribution(ChirpObject.Frequency2, 'Frequency2'))
     print(TestNormalDistribution(ChirpObject.Frequency3, 'Frequency3'))
     print(TestNormalDistribution(ChirpObject.Frequency4, 'Frequency4'))
->>>>>>> main
 
     syllable1.append(ChirpObject.mean_syllable1)
     syllable2.append(ChirpObject.mean_syllable2)
