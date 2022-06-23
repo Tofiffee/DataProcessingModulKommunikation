@@ -1,11 +1,6 @@
 from ChirpDataClass import ChirpData
-<<<<<<< HEAD
 from Plotting import ScatterPlotFrequency, ScatterPlotInterTime, ScatterPlotSilibleTime, ScatterChirpTimes
-from statisticsPipline import StatisticalTesting
-=======
-from Plotting import ScatterPlotFrequency, ScatterPlotSilibleTime
 from normalDistribution import TestNormalDistribution
->>>>>>> main
 
 
 listURL = [
