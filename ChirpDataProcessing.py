@@ -1,6 +1,6 @@
 from ChirpDataClass import ChirpData
 from Plotting import ScatterPlotFrequency, ScatterPlotSilibleTime
-from statisticsPipline import StatisticalTesting
+from normalDistribution import TestNormalDistribution
 
 
 listURL = [
@@ -55,12 +55,27 @@ interTimeErr3 = []
 
 
 temps = []
+counter = 0
 
 for i, j in zip(listURL, listSheetID):
     ChirpObject = ChirpData(i, j)
-    
+    counter += 1
+    print(counter)
+    print(TestNormalDistribution(ChirpObject.syllable1, 'syllable1'))
+    print(TestNormalDistribution(ChirpObject.syllable2, 'syllable2'))
+    print(TestNormalDistribution(ChirpObject.syllable3, 'syllable3'))
+    print(TestNormalDistribution(ChirpObject.syllable4, 'syllable4'))
+
+    print(TestNormalDistribution(ChirpObject.interTime1, 'interTime1'))
+    print(TestNormalDistribution(ChirpObject.interTime2, 'interTime2'))
+    print(TestNormalDistribution(ChirpObject.interTime3, 'interTime3'))
+
+    print(TestNormalDistribution(ChirpObject.Frequency1, 'Frequency1'))
+    print(TestNormalDistribution(ChirpObject.Frequency2, 'Frequency2'))
+    print(TestNormalDistribution(ChirpObject.Frequency3, 'Frequency3'))
+    print(TestNormalDistribution(ChirpObject.Frequency4, 'Frequency4'))
+
     syllable1.append(ChirpObject.mean_syllable1)
-    print(ChirpObject.mean_syllable1)
     syllable2.append(ChirpObject.mean_syllable2)
     syllabel3.append(ChirpObject.mean_syllable3)
     syllabel4.append(ChirpObject.mean_syllable4)
@@ -71,7 +86,6 @@ for i, j in zip(listURL, listSheetID):
     syllbErr4.append(ChirpObject.std_syllable4)
 
     Frequ1.append(ChirpObject.meanFrequency1)
-    print(ChirpObject.meanFrequency1)
     Frequ2.append(ChirpObject.meanFrequency2)
     Frequ3.append(ChirpObject.meanFrequency3)
     Frequ4.append(ChirpObject.meanFrequency4)
